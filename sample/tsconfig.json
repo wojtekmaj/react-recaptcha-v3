@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "module": "preserve",
+    "moduleDetection": "force",
+    "noEmit": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "verbatimModuleSyntax": true
+  }
+}

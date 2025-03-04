@@ -1,0 +1,27 @@
+{
+  "name": "react-recaptcha-v3-sample-page",
+  "version": "1.0.0",
+  "description": "A sample page for React-reCAPTCHA-v3.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "author": {
+    "name": "Wojciech Maj",
+    "email": "kontakt@wojtekmaj.pl"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@wojtekmaj/react-recaptcha-v3": "portal:../packages/react-recaptcha-v3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.0"
+  }
+}

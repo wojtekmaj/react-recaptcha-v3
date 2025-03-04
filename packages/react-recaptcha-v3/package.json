@@ -1,0 +1,76 @@
+{
+  "name": "@wojtekmaj/react-recaptcha-v3",
+  "version": "0.1.0",
+  "description": "Integrate Google reCAPTCHA v3 with your React app",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rimraf dist",
+    "format": "biome format",
+    "lint": "biome lint",
+    "prepack": "yarn clean && yarn build",
+    "test": "yarn lint && yarn tsc && yarn format && yarn unit",
+    "tsc": "tsc",
+    "unit": "vitest",
+    "watch": "yarn build --watch"
+  },
+  "keywords": [
+    "captcha",
+    "google",
+    "react",
+    "recaptcha-v3",
+    "recaptcha"
+  ],
+  "author": {
+    "name": "Wojciech Maj",
+    "email": "kontakt@wojtekmaj.pl"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.0",
+    "@testing-library/dom": "^10.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "happy-dom": "^15.10.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^6.0.0",
+    "typescript": "^5.5.2",
+    "vitest": "^3.0.5"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wojtekmaj/react-recaptcha-v3.git",
+    "directory": "packages/react-recaptcha-v3"
+  },
+  "funding": "https://github.com/wojtekmaj/react-recaptcha-v3?sponsor=1"
+}

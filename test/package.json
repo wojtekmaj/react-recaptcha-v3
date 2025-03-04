@@ -1,0 +1,33 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "A test page for React-reCAPTCHA-v3.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "format": "biome format",
+    "lint": "biome lint",
+    "preview": "vite preview",
+    "test": "yarn lint && yarn tsc && yarn format",
+    "tsc": "tsc"
+  },
+  "author": {
+    "name": "Wojciech Maj",
+    "email": "kontakt@wojtekmaj.pl"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@wojtekmaj/react-recaptcha-v3": "workspace:packages/react-recaptcha-v3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.0",
+    "@types/react": "*",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.5.2",
+    "vite": "^6.0.0"
+  }
+}
