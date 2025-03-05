@@ -1,6 +1,6 @@
-import ReCaptchaContext from './ReCaptchaContext.js';
+import { useContext } from 'react';
 
-import use from './use.js';
+import ReCaptchaContext from './ReCaptchaContext.js';
 
 import type { ReCaptchaContextType } from './ReCaptchaContext.js';
 
@@ -11,5 +11,5 @@ import type { ReCaptchaContextType } from './ReCaptchaContext.js';
  * @returns {ReCaptchaContextType} Google reCAPTCHA v3 context
  */
 export default function useReCaptcha(): ReCaptchaContextType {
-  return use(ReCaptchaContext);
+  return useContext(ReCaptchaContext);
 }
