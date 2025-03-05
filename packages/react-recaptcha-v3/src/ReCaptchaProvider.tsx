@@ -69,6 +69,7 @@ export default function ReCaptchaProvider({
     registerInstance(id, {
       language,
       onLoadCallback,
+      onLoadCallbackName: scriptProps?.onLoadCallbackName,
       render: container?.element ? 'explicit' : reCaptchaKey,
       scriptProps: {
         appendTo: scriptProps?.appendTo,
@@ -76,7 +77,6 @@ export default function ReCaptchaProvider({
         defer: scriptProps?.defer,
         id: scriptProps?.id,
         nonce: scriptProps?.nonce,
-        onLoadCallbackName: scriptProps?.onLoadCallbackName,
       },
       useEnterprise,
       useRecaptchaNet,

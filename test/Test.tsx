@@ -6,6 +6,17 @@ import VisibilityOptions from './VisibilityOptions.js';
 
 import './Test.css';
 
+function onLoadCallback() {
+  console.log('reCAPTCHA loaded');
+}
+
+const onLoadCallbackName = 'onLoadCallback';
+
+// @ts-ignore
+window[onLoadCallbackName] = onLoadCallback;
+
+const scriptProps = { onLoadCallbackName };
+
 export default function Test() {
   const [useRecaptchaNet, setUseRecaptchaNet] = useState(false);
   const [useRecaptchaEnterprise, setUseRecaptchaEnterprise] = useState(true);
@@ -81,7 +92,7 @@ export default function Test() {
           {showInstance1 ? (
             <>
               <h2>Instance 1</h2>
-              <ReCaptchaProvider reCaptchaKey={reCaptchaKey}>
+              <ReCaptchaProvider reCaptchaKey={reCaptchaKey} scriptProps={scriptProps}>
                 <form>
                   <div>
                     <output className="Test__container__content__token">{token}</output>

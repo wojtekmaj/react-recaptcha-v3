@@ -162,8 +162,12 @@ export function registerInstance(
   instanceId: string,
   {
     onLoadCallback,
+    onLoadCallbackName,
     ...loadGoogleRecaptchaScriptOptions
-  }: LoadGoogleRecaptchaScriptOptions & { onLoadCallback?: () => void },
+  }: LoadGoogleRecaptchaScriptOptions & {
+    onLoadCallback?: () => void;
+    onLoadCallbackName?: string;
+  },
 ) {
   if (instances.size === 0) {
     initialize();
@@ -178,6 +182,27 @@ export function registerInstance(
       onLoadCallback();
     } else {
       onLoadCallbacks.add(onLoadCallback);
+    }
+  }
+
+  if (onLoadCallbackName) {
+    function callOnLoadCallbackIfExists() {
+      if (!onLoadCallbackName) {
+        return;
+      }
+
+      // @ts-ignore
+      const maybeOnLoadCallback = window[onLoadCallbackName];
+
+      if (typeof maybeOnLoadCallback === 'function') {
+        maybeOnLoadCallback();
+      }
+    }
+
+    if (isLoaded) {
+      callOnLoadCallbackIfExists();
+    } else {
+      onLoadCallbacks.add(callOnLoadCallbackIfExists);
     }
   }
 }
