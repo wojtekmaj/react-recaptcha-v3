@@ -70,7 +70,14 @@ export default function ReCaptchaProvider({
       language,
       onLoadCallback,
       render: container?.element ? 'explicit' : reCaptchaKey,
-      scriptProps,
+      scriptProps: {
+        appendTo: scriptProps?.appendTo,
+        async: scriptProps?.async,
+        defer: scriptProps?.defer,
+        id: scriptProps?.id,
+        nonce: scriptProps?.nonce,
+        onLoadCallbackName: scriptProps?.onLoadCallbackName,
+      },
       useEnterprise,
       useRecaptchaNet,
     });
@@ -80,7 +87,20 @@ export default function ReCaptchaProvider({
 
       setReCaptchaInstance(null);
     };
-  }, [container?.element, id, language, reCaptchaKey, scriptProps, useEnterprise, useRecaptchaNet]);
+  }, [
+    container?.element,
+    id,
+    language,
+    reCaptchaKey,
+    scriptProps?.appendTo,
+    scriptProps?.async,
+    scriptProps?.defer,
+    scriptProps?.id,
+    scriptProps?.nonce,
+    scriptProps?.onLoadCallbackName,
+    useEnterprise,
+    useRecaptchaNet,
+  ]);
 
   useEffect(() => {
     if (!container?.element || !reCaptchaInstance?.render) {
