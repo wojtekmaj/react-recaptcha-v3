@@ -67,6 +67,6 @@ function useFallback<T>(usable: Usable<T>): T {
   return useContextFallback(usable);
 }
 
-const use = originalUse || useFallback;
+const use: <T>(usable: Usable<T>) => T = originalUse || useFallback;
 
 export default use;
