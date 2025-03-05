@@ -12,7 +12,7 @@ export function loadScript({ async, appendTo, defer, id, nonce, src }: ScriptPro
     script.id = id;
   }
   if (nonce) {
-    script.nonce = nonce;
+    script.setAttribute('nonce', nonce);
   }
   script.src = src;
 

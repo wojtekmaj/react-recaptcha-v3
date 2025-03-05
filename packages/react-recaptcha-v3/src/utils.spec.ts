@@ -18,11 +18,12 @@ describe('loadScript', () => {
     });
 
     const script = document.head.querySelector('script');
+
     expect(script).not.toBeNull();
     expect(script?.async).toBe(true);
     expect(script?.defer).toBe(true);
     expect(script?.id).toBe('test-script');
-    expect(script?.nonce).toBe('test-nonce');
+    expect(script).toHaveAttribute('nonce', 'test-nonce');
     expect(script?.src).toBe('https://example.com/script.js');
   });
 
@@ -37,11 +38,12 @@ describe('loadScript', () => {
     });
 
     const script = document.body.querySelector('script');
+
     expect(script).not.toBeNull();
     expect(script?.async).toBe(true);
     expect(script?.defer).toBe(true);
     expect(script?.id).toBe('test-script');
-    expect(script?.nonce).toBe('test-nonce');
+    expect(script).toHaveAttribute('nonce', 'test-nonce');
     expect(script?.src).toBe('https://example.com/script.js');
   });
 
