@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
-import useGoogleReCaptcha from './useGoogleReCaptcha.js';
+import useReCaptcha from './useReCaptcha.js';
 
-type GoogleReCaptchaProps = {
+type ReCaptchaProps = {
   action?: string;
   onVerify: (token: string) => void;
 };
 
-export default function GoogleReCaptcha({ action, onVerify }: GoogleReCaptchaProps) {
-  const { container, executeRecaptcha } = useGoogleReCaptcha();
+export default function ReCaptcha({ action, onVerify }: ReCaptchaProps) {
+  const { container, executeRecaptcha } = useReCaptcha();
 
   useEffect(() => {
     if (!executeRecaptcha) {
