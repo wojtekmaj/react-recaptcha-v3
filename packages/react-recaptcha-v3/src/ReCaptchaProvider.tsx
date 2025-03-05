@@ -22,11 +22,11 @@ type ReCaptchaProviderProps = {
   language?: string;
   reCaptchaKey: string;
   scriptProps?: {
-    nonce?: string;
-    defer?: boolean;
-    async?: boolean;
     appendTo?: 'head' | 'body';
+    async?: boolean;
+    defer?: boolean;
     id?: string;
+    nonce?: string;
     onLoadCallbackName?: string;
   };
   useEnterprise?: boolean;

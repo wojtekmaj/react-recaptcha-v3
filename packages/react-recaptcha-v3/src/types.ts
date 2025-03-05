@@ -7,8 +7,8 @@ export type ReCaptchaInstance = {
 };
 
 export type ScriptProps = {
-  async?: boolean;
   appendTo?: 'head' | 'body';
+  async?: boolean;
   defer?: boolean;
   id?: string;
   nonce?: string;
