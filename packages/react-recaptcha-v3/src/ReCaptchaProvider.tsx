@@ -4,7 +4,7 @@ import ReCaptchaContext from './ReCaptchaContext.js';
 
 import { registerInstance, removeClient, unregisterInstance } from './manager.js';
 
-import type { ReCaptchaInstance } from './types.js';
+import type { ReCaptchaInstance, ScriptProps } from './types.js';
 
 type ReCaptchaProviderProps = {
   container?: {
@@ -21,12 +21,7 @@ type ReCaptchaProviderProps = {
   children?: React.ReactNode;
   language?: string;
   reCaptchaKey: string;
-  scriptProps?: {
-    appendTo?: 'head' | 'body';
-    async?: boolean;
-    defer?: boolean;
-    id?: string;
-    nonce?: string;
+  scriptProps?: ScriptProps & {
     onLoadCallbackName?: string;
   };
   useEnterprise?: boolean;
