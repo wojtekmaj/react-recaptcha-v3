@@ -67,7 +67,7 @@ export default function VisibilityOptions({
           onChange={onShowInstance3Change}
         />
         <label htmlFor="showInstance3">Show instance 3</label>{' '}
-        <small>(inline badge, too; use to test multiple instances)</small>
+        <small>(inline badge, too; hidden badge; use to test multiple instances)</small>
       </div>
 
       <div>

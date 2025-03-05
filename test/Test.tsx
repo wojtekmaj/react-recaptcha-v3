@@ -132,6 +132,7 @@ export default function Test() {
                   element: containerId3,
                   parameters: {
                     badge: 'inline',
+                    hidden: true,
                   },
                 }}
                 reCaptchaKey={reCaptchaKey}

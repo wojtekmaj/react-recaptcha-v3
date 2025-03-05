@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import warning from 'warning';
 
 import ReCaptchaContext from './ReCaptchaContext.js';
 
@@ -6,11 +7,14 @@ import { registerInstance, removeClient, unregisterInstance } from './manager.js
 
 import type { ReCaptchaInstance, ScriptProps } from './types.js';
 
+let didWarnAboutHiddenBadge = false;
+
 type ReCaptchaProviderProps = {
   container?: {
     element?: string | HTMLElement;
     parameters: {
       badge?: 'inline' | 'bottomleft' | 'bottomright';
+      hidden?: boolean;
       callback?: () => void;
       errorCallback?: () => void;
       expiredCallback?: () => void;
@@ -124,6 +128,21 @@ export default function ReCaptchaProvider({
 
     const nextClientId = reCaptchaInstance.render(actualContainerElement, params);
 
+    if (container?.parameters?.hidden) {
+      if (!didWarnAboutHiddenBadge) {
+        warning(
+          false,
+          'reCAPTCHA badge hidden. See https://cloud.google.com/recaptcha/docs/faq#id_like_to_hide_the_badge_what_is_allowed for more information.',
+        );
+
+        didWarnAboutHiddenBadge = true;
+      }
+
+      (
+        actualContainerElement.querySelector('.grecaptcha-badge') as HTMLDivElement | null
+      )?.style.setProperty('display', 'none');
+    }
+
     setClientId(nextClientId);
     clientIdMounted.current = true;
 
@@ -138,6 +157,7 @@ export default function ReCaptchaProvider({
   }, [
     container?.element,
     container?.parameters?.badge,
+    container?.parameters?.hidden,
     container?.parameters?.callback,
     container?.parameters?.errorCallback,
     container?.parameters?.expiredCallback,
