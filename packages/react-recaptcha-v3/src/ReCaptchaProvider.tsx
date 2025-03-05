@@ -25,7 +25,7 @@ type ReCaptchaProviderProps = {
   children?: React.ReactNode;
   language?: string;
   reCaptchaKey: string;
-  scriptProps?: ScriptProps & {
+  scriptProps?: Omit<ScriptProps, 'src'> & {
     onLoadCallbackName?: string;
   };
   useEnterprise?: boolean;
