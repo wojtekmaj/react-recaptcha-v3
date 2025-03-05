@@ -1,6 +1,6 @@
 {
   "name": "@wojtekmaj/react-recaptcha-v3",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Integrate Google reCAPTCHA v3 with your React app",
   "type": "module",
   "sideEffects": false,
