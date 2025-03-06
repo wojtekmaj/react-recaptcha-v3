@@ -4,12 +4,7 @@ import { ReCaptchaProvider, ReCaptcha } from '@wojtekmaj/react-recaptcha-v3';
 import './Sample.css';
 
 export default function Sample() {
-  const [value, setValue] = useState('Hello world');
   const [token, setToken] = useState('');
-
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
 
   return (
     <div className="Sample">
@@ -24,7 +19,7 @@ export default function Sample() {
               <input type="hidden" name="g-recaptcha-response" value={token} />
               <div>
                 <label htmlFor="input">Input</label>
-                <input id="input" type="text" value={value} onChange={onChange} />
+                <input id="input" type="text" />
               </div>
               <button type="submit">Submit</button>
             </form>
