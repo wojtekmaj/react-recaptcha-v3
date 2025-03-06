@@ -16,6 +16,9 @@ const onLoadCallbacks = new Set<() => void>();
 const isBrowser = typeof window !== 'undefined';
 const cfgKey = '___grecaptcha_cfg';
 
+// Random name to prevent conflicts with other scripts
+const onLoadCallbackName = `onLoadCallback_${Math.random().toString(36).slice(2)}`;
+
 function initialize() {
   if (!isBrowser) {
     return;
@@ -55,6 +58,19 @@ function initialize() {
 
   window.grecaptcha.ready = ready;
   window.grecaptcha.enterprise.ready = ready;
+
+  function onLoadCallback() {
+    isLoaded = true;
+
+    for (const callback of onLoadCallbacks) {
+      callback();
+    }
+
+    onLoadCallbacks.clear();
+  }
+
+  // @ts-ignore
+  window[onLoadCallbackName] = onLoadCallback;
 }
 
 function generateGoogleRecaptchaSrc({
@@ -86,22 +102,6 @@ function generateGoogleRecaptchaSrc({
 
   return `https://www.${host}/recaptcha/${script}?${params.toString()}`;
 }
-
-// Random name to prevent conflicts with other scripts
-const onLoadCallbackName = `onLoadCallback_${Math.random().toString(36).slice(2)}`;
-
-function onLoadCallback() {
-  isLoaded = true;
-
-  for (const callback of onLoadCallbacks) {
-    callback();
-  }
-
-  onLoadCallbacks.clear();
-}
-
-// @ts-ignore
-window[onLoadCallbackName] = onLoadCallback;
 
 type LoadGoogleRecaptchaScriptOptions = {
   language?: string;
@@ -149,6 +149,7 @@ export function removeClient(clientId: number) {
   if (!window[cfgKey]) {
     return;
   }
+
   const cfg = window[cfgKey];
 
   if (!cfg.clients) {
