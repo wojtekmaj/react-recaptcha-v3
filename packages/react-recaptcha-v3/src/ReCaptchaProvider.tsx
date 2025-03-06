@@ -10,28 +10,92 @@ import type { ReCaptchaInstance, ScriptProps } from './types.js';
 let didWarnAboutHiddenBadge = false;
 
 type ReCaptchaProviderProps = {
+  /**
+   * Configuration for the reCAPTCHA container.
+   */
   container?: {
+    /**
+     * The ID of the container element. If provided, the reCAPTCHA will be rendered into this
+     * element. If not, the reCAPTCHA badge will be rendered.
+     */
     element?: string | HTMLElement;
     parameters: {
+      /**
+       * The position of the badge.
+       */
       badge?: 'inline' | 'bottomleft' | 'bottomright';
+      /**
+       * Hides the reCAPTCHA badge.
+       *
+       * @see https://cloud.google.com/recaptcha/docs/faq#id_like_to_hide_the_badge_what_is_allowed
+       */
       hidden?: boolean;
+      /**
+       * The name of your callback function, executed when the user submits a successful response.
+       * The g-recaptcha-response token is passed to your callback.
+       */
       callback?: () => void;
+      /**
+       * The name of your callback function, executed when reCAPTCHA encounters an error (usually
+       * network connectivity) and cannot continue until connectivity is restored. If you specify a
+       * function here, you are responsible for informing the user that they should retry.
+       */
       errorCallback?: () => void;
+      /**
+       * The name of your callback function, executed when the reCAPTCHA response expires and the
+       * user needs to re-verify.
+       */
       expiredCallback?: () => void;
+      /**
+       * The tabindex of the widget and challenge. If other elements in your page use tabindex, it
+       * should be set to make user navigation easier.
+       */
       tabindex?: number;
+      /**
+       * The color theme of the widget.
+       */
       theme?: 'dark' | 'light';
     };
   };
+  /**
+   * The child components that will have access to the reCAPTCHA context.
+   */
   children?: React.ReactNode;
+  /**
+   * The language code for the reCAPTCHA widget.
+   */
   language?: string;
+  /**
+   * The reCAPTCHA site key.
+   */
   reCaptchaKey: string;
+  /**
+   * Additional props for the reCAPTCHA script.
+   */
   scriptProps?: Omit<ScriptProps, 'src'> & {
     onLoadCallbackName?: string;
   };
+  /**
+   * Whether to use the reCAPTCHA Enterprise.
+   *
+   * @default false
+   */
   useEnterprise?: boolean;
+  /**
+   * Whether to use recaptcha.net instead of google.com for loading the script.
+   *
+   * @default false
+   */
   useRecaptchaNet?: boolean;
 };
 
+/**
+ * Provides the reCAPTCHA context to your application. It should wrap your entire application or the
+ * part of your application where you want to use reCAPTCHA.
+ *
+ * You may have multiple `ReCaptchaProvider` components in your application, however, they must use
+ * the same settings.
+ */
 export default function ReCaptchaProvider({
   container,
   children,
