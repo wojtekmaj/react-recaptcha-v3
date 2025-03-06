@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "search.exclude": {
     "**/.yarn": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
