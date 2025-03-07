@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@wojtekmaj/react-recaptcha-v3.svg)](https://www.npmjs.com/package/@wojtekmaj/react-recaptcha-v3) ![downloads](https://img.shields.io/npm/dt/@wojtekmaj/react-recaptcha-v3.svg) [![CI](https://github.com/wojtekmaj/react-recaptcha-v3/actions/workflows/ci.yml/badge.svg)](https://github.com/wojtekmaj/react-recaptcha-v3/actions)
+
 # @wojtekmaj/react-recaptcha-v3
 
 Integrate Google reCAPTCHA v3 with your React app.
