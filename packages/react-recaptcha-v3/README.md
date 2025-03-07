@@ -104,6 +104,12 @@ Used to get the Google reCAPTCHA v3 context.
 - `executeRecaptcha` - A function to execute the reCAPTCHA verification process.
 - `reCaptchaInstance` - The reCAPTCHA instance.
 
+## `react-google-recaptcha-v3` vs `@wojtekmaj/react-recaptcha-v3`
+
+`@wojtekmaj/react-recaptcha-v3` is a complete rewrite of `react-google-recaptcha-v3`. It was created to enhance TypeScript support and fix some long-standing issues (handling of multiple instances, `nonce` support, hiding reCAPTCHA badge, etc.).
+
+`@wojtekmaj/react-recaptcha-v3` is meant to be a drop-in replacement for `react-google-recaptcha-v3`, so you can use it without any changes to your code, unless you rely on `withGoogleReCaptcha` HOC which has already been deprecated in the original package.
+
 ## License
 
 The MIT License.
