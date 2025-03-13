@@ -7,6 +7,8 @@ type VisibilityOptionsProps = {
   setShowInstance3: (value: boolean) => void;
   showInstance4: boolean;
   setShowInstance4: (value: boolean) => void;
+  showInstance5: boolean;
+  setShowInstance5: (value: boolean) => void;
 };
 
 export default function VisibilityOptions({
@@ -18,6 +20,8 @@ export default function VisibilityOptions({
   setShowInstance3,
   showInstance4,
   setShowInstance4,
+  showInstance5,
+  setShowInstance5,
 }: VisibilityOptionsProps) {
   function onShowInstance1Change(event: React.ChangeEvent<HTMLInputElement>) {
     setShowInstance1(event.target.checked);
@@ -33,6 +37,10 @@ export default function VisibilityOptions({
 
   function onShowInstance4Change(event: React.ChangeEvent<HTMLInputElement>) {
     setShowInstance4(event.target.checked);
+  }
+
+  function onShowInstance5Change(event: React.ChangeEvent<HTMLInputElement>) {
+    setShowInstance5(event.target.checked);
   }
 
   return (
@@ -56,7 +64,8 @@ export default function VisibilityOptions({
           checked={showInstance2}
           onChange={onShowInstance2Change}
         />
-        <label htmlFor="showInstance2">Show instance 2</label> <small>(inline badge)</small>
+        <label htmlFor="showInstance2">Show instance 2</label>{' '}
+        <small>(default badge, hidden)</small>
       </div>
 
       <div>
@@ -66,8 +75,7 @@ export default function VisibilityOptions({
           checked={showInstance3}
           onChange={onShowInstance3Change}
         />
-        <label htmlFor="showInstance3">Show instance 3</label>{' '}
-        <small>(inline badge, too; hidden badge; use to test multiple instances)</small>
+        <label htmlFor="showInstance3">Show instance 3</label> <small>(inline badge)</small>
       </div>
 
       <div>
@@ -78,6 +86,17 @@ export default function VisibilityOptions({
           onChange={onShowInstance4Change}
         />
         <label htmlFor="showInstance4">Show instance 4</label>{' '}
+        <small>(inline badge, too; hidden badge; use to test multiple instances)</small>
+      </div>
+
+      <div>
+        <input
+          id="showInstance5"
+          type="checkbox"
+          checked={showInstance5}
+          onChange={onShowInstance5Change}
+        />
+        <label htmlFor="showInstance5">Show instance 5</label>{' '}
         <small>(different settings; should crash unless 1 and 2 are hidden)</small>
       </div>
     </fieldset>
