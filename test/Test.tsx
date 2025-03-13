@@ -25,6 +25,7 @@ export default function Test() {
   const [showInstance2, setShowInstance2Internal] = useState(false);
   const [showInstance3, setShowInstance3Internal] = useState(false);
   const [showInstance4, setShowInstance4Internal] = useState(false);
+  const [showInstance5, setShowInstance5Internal] = useState(false);
 
   const containerId2 = useId();
   const containerId3 = useId();
@@ -33,6 +34,7 @@ export default function Test() {
   const [token2, setToken2] = useState('');
   const [token3, setToken3] = useState('');
   const [token4, setToken4] = useState('');
+  const [token5, setToken5] = useState('');
 
   function setShowInstance1(value: boolean) {
     setShowInstance1Internal(value);
@@ -62,6 +64,13 @@ export default function Test() {
     }
   }
 
+  function setShowInstance5(value: boolean) {
+    setShowInstance5Internal(value);
+    if (!value) {
+      setToken5('');
+    }
+  }
+
   return (
     <div className="Test">
       <header>
@@ -82,10 +91,12 @@ export default function Test() {
             setShowInstance2={setShowInstance2}
             setShowInstance3={setShowInstance3}
             setShowInstance4={setShowInstance4}
+            setShowInstance5={setShowInstance5}
             showInstance1={showInstance1}
             showInstance2={showInstance2}
             showInstance3={showInstance3}
             showInstance4={showInstance4}
+            showInstance5={showInstance5}
           />
         </aside>
         <main className="Test__container__content">
@@ -106,6 +117,27 @@ export default function Test() {
             <>
               <h2>Instance 2</h2>
               <ReCaptchaProvider
+                reCaptchaKey={reCaptchaKey}
+                scriptProps={scriptProps}
+                container={{
+                  parameters: {
+                    hidden: true,
+                  },
+                }}
+              >
+                <form>
+                  <div>
+                    <output className="Test__container__content__token">{token2}</output>
+                    <ReCaptcha onVerify={setToken2} />
+                  </div>
+                </form>
+              </ReCaptchaProvider>
+            </>
+          ) : null}
+          {showInstance3 ? (
+            <>
+              <h2>Instance 3</h2>
+              <ReCaptchaProvider
                 container={{
                   element: containerId2,
                   parameters: {
@@ -117,16 +149,16 @@ export default function Test() {
                 <form>
                   <div>
                     <div id={containerId2} />
-                    <ReCaptcha onVerify={setToken2} />
-                    <output className="Test__container__content__token">{token2}</output>
+                    <ReCaptcha onVerify={setToken3} />
+                    <output className="Test__container__content__token">{token3}</output>
                   </div>
                 </form>
               </ReCaptchaProvider>
             </>
           ) : null}
-          {showInstance3 ? (
+          {showInstance4 ? (
             <>
-              <h2>Instance 3</h2>
+              <h2>Instance 4</h2>
               <ReCaptchaProvider
                 container={{
                   element: containerId3,
@@ -140,21 +172,21 @@ export default function Test() {
                 <form>
                   <div>
                     <div id={containerId3} />
-                    <ReCaptcha onVerify={setToken3} />
-                    <output className="Test__container__content__token">{token3}</output>
+                    <ReCaptcha onVerify={setToken4} />
+                    <output className="Test__container__content__token">{token4}</output>
                   </div>
                 </form>
               </ReCaptchaProvider>
             </>
           ) : null}
-          {showInstance4 ? (
+          {showInstance5 ? (
             <>
-              <h2>Instance 4</h2>
+              <h2>Instance 5</h2>
               <ReCaptchaProvider reCaptchaKey={reCaptchaKey} useEnterprise useRecaptchaNet>
                 <form>
                   <div>
-                    <ReCaptcha onVerify={setToken4} />
-                    <output className="Test__container__content__token">{token4}</output>
+                    <ReCaptcha onVerify={setToken5} />
+                    <output className="Test__container__content__token">{token5}</output>
                   </div>
                 </form>
               </ReCaptchaProvider>

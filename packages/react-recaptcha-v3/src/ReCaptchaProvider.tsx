@@ -192,21 +192,6 @@ export default function ReCaptchaProvider({
 
     const nextClientId = reCaptchaInstance.render(actualContainerElement, params);
 
-    if (container?.parameters?.hidden) {
-      if (!didWarnAboutHiddenBadge) {
-        warning(
-          false,
-          'reCAPTCHA badge hidden. See https://cloud.google.com/recaptcha/docs/faq#id_like_to_hide_the_badge_what_is_allowed for more information.',
-        );
-
-        didWarnAboutHiddenBadge = true;
-      }
-
-      (
-        actualContainerElement.querySelector('.grecaptcha-badge') as HTMLDivElement | null
-      )?.style.setProperty('display', 'none');
-    }
-
     setClientId(nextClientId);
     clientIdMounted.current = true;
 
@@ -221,7 +206,6 @@ export default function ReCaptchaProvider({
   }, [
     container?.element,
     container?.parameters?.badge,
-    container?.parameters?.hidden,
     container?.parameters?.callback,
     container?.parameters?.errorCallback,
     container?.parameters?.expiredCallback,
@@ -230,6 +214,24 @@ export default function ReCaptchaProvider({
     reCaptchaInstance,
     reCaptchaKey,
   ]);
+
+  useEffect(() => {
+    if (container?.parameters?.hidden && !!reCaptchaInstance?.execute) {
+      if (!didWarnAboutHiddenBadge) {
+        warning(
+          false,
+          'reCAPTCHA badge hidden. See https://cloud.google.com/recaptcha/docs/faq#id_like_to_hide_the_badge_what_is_allowed for more information.',
+        );
+
+        didWarnAboutHiddenBadge = true;
+      }
+
+      (document.querySelector('.grecaptcha-badge') as HTMLDivElement | null)?.style.setProperty(
+        'display',
+        'none',
+      );
+    }
+  }, [container?.parameters?.hidden, reCaptchaInstance?.execute]);
 
   const shouldUseClientId = Boolean(container?.element);
   const clientIdOrReCaptchaKey = shouldUseClientId ? clientId : reCaptchaKey;
