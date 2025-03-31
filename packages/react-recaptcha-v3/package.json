@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "clean": "rimraf dist",
+    "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
     "format": "biome format",
     "lint": "biome lint",
     "prepack": "yarn clean && yarn build",
@@ -49,7 +49,6 @@
     "happy-dom": "^15.10.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^6.0.0",
     "typescript": "^5.5.2",
     "vitest": "^3.0.5"
   },
