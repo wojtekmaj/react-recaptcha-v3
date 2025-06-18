@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 type VisibilityOptionsProps = {
   showInstance1: boolean;
   setShowInstance1: (value: boolean) => void;
@@ -19,6 +21,11 @@ export default function VisibilityOptions({
   showInstance4,
   setShowInstance4,
 }: VisibilityOptionsProps) {
+  const showInstance1Id = useId();
+  const showInstance2Id = useId();
+  const showInstance3Id = useId();
+  const showInstance4Id = useId();
+
   function onShowInstance1Change(event: React.ChangeEvent<HTMLInputElement>) {
     setShowInstance1(event.target.checked);
   }
@@ -41,43 +48,43 @@ export default function VisibilityOptions({
 
       <div>
         <input
-          id="showInstance1"
+          id={showInstance1Id}
           type="checkbox"
           checked={showInstance1}
           onChange={onShowInstance1Change}
         />
-        <label htmlFor="showInstance1">Show instance 1</label> <small>(default badge)</small>
+        <label htmlFor={showInstance1Id}>Show instance 1</label> <small>(default badge)</small>
       </div>
 
       <div>
         <input
-          id="showInstance2"
+          id={showInstance2Id}
           type="checkbox"
           checked={showInstance2}
           onChange={onShowInstance2Change}
         />
-        <label htmlFor="showInstance2">Show instance 2</label> <small>(inline badge)</small>
+        <label htmlFor={showInstance2Id}>Show instance 2</label> <small>(inline badge)</small>
       </div>
 
       <div>
         <input
-          id="showInstance3"
+          id={showInstance3Id}
           type="checkbox"
           checked={showInstance3}
           onChange={onShowInstance3Change}
         />
-        <label htmlFor="showInstance3">Show instance 3</label>{' '}
+        <label htmlFor={showInstance3Id}>Show instance 3</label>{' '}
         <small>(inline badge, too; hidden badge; use to test multiple instances)</small>
       </div>
 
       <div>
         <input
-          id="showInstance4"
+          id={showInstance4Id}
           type="checkbox"
           checked={showInstance4}
           onChange={onShowInstance4Change}
         />
-        <label htmlFor="showInstance4">Show instance 4</label>{' '}
+        <label htmlFor={showInstance4Id}>Show instance 4</label>{' '}
         <small>(different settings; should crash unless 1 and 2 are hidden)</small>
       </div>
     </fieldset>

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { ReCaptchaProvider, ReCaptcha } from '@wojtekmaj/react-recaptcha-v3';
 
 import './Sample.css';
 
 export default function Sample() {
   const [token, setToken] = useState('');
+  const inputId = useId();
 
   return (
     <div className="Sample">
@@ -18,8 +19,8 @@ export default function Sample() {
               <ReCaptcha onVerify={setToken} />
               <input type="hidden" name="g-recaptcha-response" value={token} />
               <div>
-                <label htmlFor="input">Input</label>
-                <input id="input" type="text" />
+                <label htmlFor={inputId}>Input</label>
+                <input id={inputId} type="text" />
               </div>
               <button type="submit">Submit</button>
             </form>

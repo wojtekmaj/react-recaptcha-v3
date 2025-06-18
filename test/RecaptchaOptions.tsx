@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 type OptionsProps = {
   useRecaptchaNet: boolean;
   setUseRecaptchaNet: (value: boolean) => void;
@@ -15,6 +17,10 @@ export default function RecaptchaOptions({
   reCaptchaKey,
   setRecaptchaKey,
 }: OptionsProps) {
+  const useRecaptchaNetId = useId();
+  const useRecaptchaEnterpriseId = useId();
+  const reCaptchaKeyId = useId();
+
   function onUseRecaptchaNetChange(event: React.ChangeEvent<HTMLInputElement>) {
     setUseRecaptchaNet(event.target.checked);
   }
@@ -32,22 +38,33 @@ export default function RecaptchaOptions({
       <legend>reCAPTCHA options</legend>
 
       <div>
-        <input type="checkbox" checked={useRecaptchaNet} onChange={onUseRecaptchaNetChange} />
-        <label htmlFor="useRecaptchaNet">Use recaptcha.net</label>
+        <input
+          type="checkbox"
+          checked={useRecaptchaNet}
+          id={useRecaptchaNetId}
+          onChange={onUseRecaptchaNetChange}
+        />
+        <label htmlFor={useRecaptchaNetId}>Use recaptcha.net</label>
       </div>
 
       <div>
         <input
           type="checkbox"
           checked={useRecaptchaEnterprise}
+          id={useRecaptchaEnterpriseId}
           onChange={onUseRecaptchaEnterpriseChange}
         />
-        <label htmlFor="useRecaptchaEnterprise">Use reCAPTCHA Enterprise</label>
+        <label htmlFor={useRecaptchaEnterpriseId}>Use reCAPTCHA Enterprise</label>
       </div>
 
       <div>
-        <label htmlFor="reCaptchaKey">Recaptcha key</label>
-        <input type="text" value={reCaptchaKey} onChange={onRecaptchaKeyChange} />
+        <label htmlFor={reCaptchaKeyId}>Recaptcha key</label>
+        <input
+          type="text"
+          id={reCaptchaKeyId}
+          value={reCaptchaKey}
+          onChange={onRecaptchaKeyChange}
+        />
       </div>
     </fieldset>
   );
