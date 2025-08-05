@@ -1,9 +1,8 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import warning from 'warning';
 
-import ReCaptchaContext from './ReCaptchaContext.js';
-
 import { registerInstance, removeClient, unregisterInstance } from './manager.js';
+import ReCaptchaContext from './ReCaptchaContext.js';
 
 import type { ReCaptchaInstance, ScriptProps } from './types.js';
 
