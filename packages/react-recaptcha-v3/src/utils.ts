@@ -3,13 +3,13 @@ import type { ScriptProps } from './types.js';
 export function loadScript({ async, appendTo, defer, id, nonce, src }: ScriptProps) {
   const script = document.createElement('script');
   if (async !== undefined) {
-    script.async = async;
+    script.setAttribute('async', '');
   }
   if (defer !== undefined) {
-    script.defer = defer;
+    script.setAttribute('defer', '');
   }
   if (id) {
-    script.id = id;
+    script.setAttribute('id', id);
   }
   if (nonce) {
     script.setAttribute('nonce', nonce);
