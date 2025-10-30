@@ -18,14 +18,21 @@ describe('loadScript', () => {
       src: 'https://example.com/script.js',
     });
 
-    const script = document.head.querySelector('script');
+    const script = document.head.querySelector(
+      'script[src="https://example.com/script.js"]',
+    ) as HTMLScriptElement | null;
 
     expect(script).not.toBeNull();
-    expect(script?.async).toBe(true);
-    expect(script?.defer).toBe(true);
-    expect(script?.id).toBe('test-script');
+
+    if (!script) {
+      throw new Error('Script not found');
+    }
+
+    expect(script).toHaveAttribute('async');
+    expect(script).toHaveAttribute('defer');
+    expect(script).toHaveAttribute('id', 'test-script');
     expect(script).toHaveAttribute('nonce', 'test-nonce');
-    expect(script?.src).toBe('https://example.com/script.js');
+    expect(script).toHaveAttribute('src', 'https://example.com/script.js');
   });
 
   it('should append script to body when appendTo is body', () => {
@@ -38,22 +45,41 @@ describe('loadScript', () => {
       src: 'https://example.com/script.js',
     });
 
-    const script = document.body.querySelector('script');
+    const script = document.body.querySelector(
+      'script[src="https://example.com/script.js"]',
+    ) as HTMLScriptElement | null;
 
     expect(script).not.toBeNull();
-    expect(script?.async).toBe(true);
-    expect(script?.defer).toBe(true);
-    expect(script?.id).toBe('test-script');
+
+    if (!script) {
+      throw new Error('Script not found');
+    }
+
+    expect(script).toHaveAttribute('async');
+    expect(script).toHaveAttribute('defer');
+    expect(script).toHaveAttribute('id', 'test-script');
     expect(script).toHaveAttribute('nonce', 'test-nonce');
-    expect(script?.src).toBe('https://example.com/script.js');
+    expect(script).toHaveAttribute('src', 'https://example.com/script.js');
   });
 
   it('should not set async and defer if they are undefined', () => {
-    loadScript({ appendTo: 'head', id: 'test-script', src: 'https://example.com/script.js' });
+    loadScript({
+      appendTo: 'head',
+      id: 'test-script',
+      src: 'https://example.com/script.js',
+    });
 
-    const script = document.head.querySelector('script');
+    const script = document.head.querySelector(
+      'script[src="https://example.com/script.js"]',
+    ) as HTMLScriptElement | null;
+
     expect(script).not.toBeNull();
-    expect(script?.async).toBe(false);
-    expect(script?.defer).toBe(false);
+
+    if (!script) {
+      throw new Error('Script not found');
+    }
+
+    expect(script).not.toHaveAttribute('async');
+    expect(script).not.toHaveAttribute('defer');
   });
 });
