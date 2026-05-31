@@ -1,1 +1,1 @@
-/packages/react-recaptcha-v3/README.md
+packages/react-recaptcha-v3/README.md
