@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { ReCaptchaProvider, ReCaptcha } from '@wojtekmaj/react-recaptcha-v3';
+import { ReCaptcha, ReCaptchaProvider } from '@wojtekmaj/react-recaptcha-v3';
 
 import RecaptchaOptions from './RecaptchaOptions.js';
 import VisibilityOptions from './VisibilityOptions.js';
